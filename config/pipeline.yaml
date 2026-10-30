@@ -1,0 +1,27 @@
+
+pipeline:
+  name: asset-management-pipeline
+  valuation_date: "2026-10-30"
+  input_path: data/input
+  output_path: output
+  timezone: UTC
+
+quality:
+  quarantine_missing_price: true
+  quarantine_unknown_security: true
+  quarantine_invalid_quantity: true
+  allow_schema_additions: false
+
+processing:
+  transaction_business_key:
+    - transaction_id
+  position_business_key:
+    - portfolio_id
+    - security_id
+    - position_date
+  fail_after_silver: false
+  max_price_age_days: 0
+
+security:
+  mask_sensitive_fields_in_logs: true
+  log_source_file: true
